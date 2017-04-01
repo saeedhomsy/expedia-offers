@@ -1,2 +1,10 @@
 language: java
 
+jdk:
+  - openjdk7
+
+
+  addons:
+  apt:
+    packages:
+    - graphviz
