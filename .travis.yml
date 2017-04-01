@@ -1,5 +1,2 @@
 language: java
-script: cd java; ant ext test
 sudo: false
-jdk:
-  - oraclejdk8
