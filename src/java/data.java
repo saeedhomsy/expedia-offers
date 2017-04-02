@@ -51,8 +51,8 @@ public class data extends HttpServlet {
              // Create string builder to create Hotel table
             StringBuilder sb = new StringBuilder();
             sb.append("<table id='tableData' class='table table-bordered table-striped'><thead><tr>");
-            sb.append("<th>Order</th><th>Image</th><th>Name</th><th>City</th><th>Language</th><th>Image</th><th>Image</th>");
-            sb.append("<th>Rating</th><th>Image</th><th>Image</th><th>Image</th><th>map</th>");
+           sb.append("<th>Order</th><th>Image</th><th>Name</th><th>City</th><th>Language</th><th>Promotion Amount</th><th>Promotion Description</th>");
+            sb.append("<th>Rating</th><th>Description</th><th>Travel Start Date</th><th>Travel End Date</th>");
             sb.append("</tr></thead><tbody>");
              // loop over hotel JSONArray and read put each item in table
             for(int i=0;i<hotelsArr.length();i++){
@@ -67,7 +67,6 @@ public class data extends HttpServlet {
                 sb.append("<td>").append(hotelsArr.getJSONObject(i).getJSONObject("hotelInfo").get("description")).append("</td>");
                 sb.append("<td>").append(hotelsArr.getJSONObject(i).getJSONObject("hotelInfo").get("travelStartDate")).append("</td>");
                 sb.append("<td>").append(hotelsArr.getJSONObject(i).getJSONObject("hotelInfo").get("travelEndDate")).append("</td>");
-                sb.append("<td>").append("<a href='hoteldetails?id=" + hotelsArr.getJSONObject(i).getJSONObject("hotelInfo").get("hotelId")  + "'>doing</a>").append("</td></tr>");
             }
             sb.append("</tbody></table>");
              // Add table to DOM
