@@ -27,12 +27,16 @@ public class data extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {   
+             // Call readJsonFromUrl method to get data as JSONObject
             JSONObject json = readData.readJsonFromUrl("https://offersvc.expedia.com/offers/v2/getOffers?scenario=deal-finder&page=foo&uid=foo&productType=Hotel");
+             // Get all offers by read (offers-Hotel) JSONArray
             JSONArray hotelsArr = json.getJSONObject("offers").getJSONArray("Hotel");
+             // Create page DOM
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Expedia Test</title>"); 
+            out.println("<title>Expedia Offers</title>");
+             // Add Style link and some css classes for table style
             out.println("<link rel='shortcut icon' href='https://www.expedia.com/favicon.ico' />");
             out.println("<link href='//www.jqueryscript.net/css/jquerysctipttop.css' rel='stylesheet' type='text/css'>"); 
             out.println("<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>"); 
@@ -44,11 +48,13 @@ public class data extends HttpServlet {
             out.println("</style>"); 
             out.println("</head>");
             out.println("<body>");   
+             // Create string builder to create Hotel table
             StringBuilder sb = new StringBuilder();
             sb.append("<table id='tableData' class='table table-bordered table-striped'><thead><tr>");
             sb.append("<th>Order</th><th>Image</th><th>Name</th><th>City</th><th>Language</th><th>Image</th><th>Image</th>");
             sb.append("<th>Rating</th><th>Image</th><th>Image</th><th>Image</th><th>map</th>");
             sb.append("</tr></thead><tbody>");
+             // loop over hotel JSONArray and read put each item in table
             for(int i=0;i<hotelsArr.length();i++){
                 sb.append("<tr><td>").append(i+1).append("</td>");
                 sb.append("<td><img src='").append(hotelsArr.getJSONObject(i).getJSONObject("hotelInfo").get("hotelImageUrl")).append("' width='100' height='100'/></td>");
@@ -64,12 +70,15 @@ public class data extends HttpServlet {
                 sb.append("<td>").append("<a href='hoteldetails?id=" + hotelsArr.getJSONObject(i).getJSONObject("hotelInfo").get("hotelId")  + "'>doing</a>").append("</td></tr>");
             }
             sb.append("</tbody></table>");
+             // Add table to DOM
             out.println(sb.toString());
+             // Add some script for table pagination
             out.println("<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>");
             out.println("<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>");
             out.println("<script type='text/javascript' src='//rawgit.com/saeedhomsy/test/master/paging.js'>");
             out.print("</script>");
             out.println("<script type='text/javascript'>");
+             //Script to creat table pagination
             out.println("$(document).ready(function() {$('#tableData').paging({limit:5});});");
             out.println("</script>");
             out.println("</body>");

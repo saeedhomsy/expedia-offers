@@ -20,7 +20,9 @@ import org.json.JSONObject;
  * @author DevPC
  */
 public class readData {
-     private static String readAll(Reader rd) throws IOException {
+    
+     // Create JSONText to convert it to JSONObject
+    private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
         while ((cp = rd.read()) != -1) {
@@ -29,6 +31,7 @@ public class readData {
         return sb.toString();
     }
    
+     //Get API URL and return JSONObject
     public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
         try {
