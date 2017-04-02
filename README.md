@@ -1,4 +1,4 @@
-https://travis-ci.org/saeedhomsy/expedia-offers.svg?branch=master
+[![Build Status](https://travis-ci.org/saeedhomsy/expedia-offers.svg?branch=master)](https://travis-ci.org/saeedhomsy/expedia-offers)
 # expedia-offers
 please follow the [link](https://expediaoffers.herokuapp.com/offers) for online version
 
